@@ -36,8 +36,9 @@ class NavigationMenuButton extends StatelessWidget {
   }
 
   Text _text(BuildContext context, Color? textColor) => Text(
-        "#${color.toHex()}",
-        style:
-            Theme.of(context).textTheme.headline6!.copyWith(color: textColor),
+        '#${color.toHex()}',
+        style: Theme.of(context).textTheme.headline6?.copyWith(
+              color: textColor,
+            ),
       );
 }

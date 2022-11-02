@@ -25,14 +25,8 @@ class SinglePageAppRouteInformationParser
     } else if (uri.pathSegments.length == 3) {
       final first = uri.pathSegments[0].toLowerCase();
       final second = uri.pathSegments[1].toLowerCase();
-      // final third = uri.pathSegments[2].toLowerCase();
-      // final shapeBorderType = extractShapeBorderType(third);
-      // if (first == 'colors' && shapeBorderType != null) {
       if (first == 'colors') {
-        return SinglePageAppConfiguration.shapeBorder(
-          second,
-          // shapeBorderType,
-        );
+        return SinglePageAppConfiguration.shapeBorder(second);
       } else {
         return SinglePageAppConfiguration.unknown();
       }
@@ -53,8 +47,6 @@ class SinglePageAppRouteInformationParser
             : '/colors/${configuration.colorCode}',
       );
     } else if (configuration.isShapePage) {
-      // final borderType = configuration.shapeBorderType?.stringRepresentation();
-      // final location = '/colors/${configuration.colorCode}/$borderType';
       final location = '/colors/${configuration.colorCode}';
       return RouteInformation(location: location);
     } else {
@@ -68,22 +60,4 @@ class SinglePageAppRouteInformationParser
     }).toList();
     return colorCodes.contains(colorCode);
   }
-
-  // ShapeBorderType? extractShapeBorderType(String shapeBorderTypeValue) {
-  //   final value = shapeBorderTypeValue.toLowerCase();
-  //   switch (value) {
-  //     case CONTINUOUS_SHAPE:
-  //       return ShapeBorderType.CONTINUOUS;
-  //     case BEVELED_SHAPE:
-  //       return ShapeBorderType.BEVELED;
-  //     case ROUNDED_SHAPE:
-  //       return ShapeBorderType.ROUNDED;
-  //     case STADIUM_SHAPE:
-  //       return ShapeBorderType.STADIUM;
-  //     case CIRCLE_SHAPE:
-  //       return ShapeBorderType.CIRCLE;
-  //     default:
-  //       return null;
-  //   }
-  // }
 }

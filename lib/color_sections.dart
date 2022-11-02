@@ -5,13 +5,11 @@ import 'package:single_page_scrollable_website/common/entity/color_code.dart';
 
 class ColorSections extends StatefulWidget {
   final List<MaterialColor> colors;
-  // final ValueNotifier<ShapeBorderType?> shapeBorderTypeNotifier;
   final ValueNotifier<ColorCode?> colorCodeNotifier;
 
   const ColorSections({
     Key? key,
     required this.colors,
-    // required this.shapeBorderTypeNotifier,
     required this.colorCodeNotifier,
   }) : super(key: key);
 
@@ -21,7 +19,6 @@ class ColorSections extends StatefulWidget {
 
 class _ColorSectionsState extends State<ColorSections> {
   final double _minPageHeight = 600;
-
   PageController _pageController = PageController();
 
   // Find the index of the color code from the colors list
@@ -81,7 +78,6 @@ class _ColorSectionsState extends State<ColorSections> {
           color: color.shade100,
           child: ShapeBorderListView(
             sectionColor: color,
-            // shapeBorderTypeNotifier: widget.shapeBorderTypeNotifier,
             colorCodeNotifier: widget.colorCodeNotifier,
           ),
         );

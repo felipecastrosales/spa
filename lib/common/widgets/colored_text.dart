@@ -17,8 +17,8 @@ class ColoredText extends StatelessWidget {
     Color textColor =
         brightness == Brightness.light ? Colors.black : Colors.white;
     return Text(
-      text == null ? "#${color.toHex()}" : text!,
-      style: Theme.of(context).textTheme.headline6!.copyWith(color: textColor),
+      text == null ? '#${color.toHex()}' : text ?? '',
+      style: Theme.of(context).textTheme.headline6?.copyWith(color: textColor),
     );
   }
 }
