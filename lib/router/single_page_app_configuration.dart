@@ -15,8 +15,6 @@ class SinglePageAppConfiguration {
         colorCode = null;
 
   bool get isUnknown => unknown == true;
-
   bool get isHomePage => unknown == false;
-
   bool get isShapePage => unknown == false && colorCode != null;
 }

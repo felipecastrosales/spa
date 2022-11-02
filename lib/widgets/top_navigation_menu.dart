@@ -15,8 +15,9 @@ class TopNavigationMenu extends StatelessWidget {
 
   int get colorCodeIndex {
     final selectedHexColorCode = colorCodeNotifier.value?.hexColorCode;
-    int index =
-        colors.indexWhere((element) => element.toHex() == selectedHexColorCode);
+    int index = colors.indexWhere(
+      (element) => element.toHex() == selectedHexColorCode,
+    );
     return index > -1 ? index : 0;
   }
 
@@ -30,6 +31,15 @@ class TopNavigationMenu extends StatelessWidget {
           child: Wrap(
             direction: Axis.horizontal,
             children: [
+              NavigationMenuButton(
+                color: Colors.white,
+                selected: colorCodeIndex == 0,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 16,
+                ),
+                onPressed: () {},
+              ),
               for (int i = 0; i < colors.length; i++)
                 NavigationMenuButton(
                   color: colors[i],

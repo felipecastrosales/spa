@@ -17,28 +17,35 @@ class NavigationMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme.headline6;
     Brightness brightness = ThemeData.estimateBrightnessForColor(color);
     Color textColor =
         brightness == Brightness.light ? Colors.black : Colors.white;
+
     return Padding(
       padding: padding,
       child: selected
           ? ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(backgroundColor: color),
-              child: _text(context, textColor),
+              // child: _text(context, textColor),
+              child: Text(
+                '#${color.toHex()}',
+                style: textTheme?.copyWith(color: textColor),
+              ),
             )
           : TextButton(
               onPressed: onPressed,
-              child: _text(context, color),
+              // child: _text(context, color),
+              child: Text(
+                '#${color.toHex()}',
+                style: textTheme?.copyWith(color: color),
+              ),
             ),
     );
   }
 
-  Text _text(BuildContext context, Color? textColor) => Text(
-        '#${color.toHex()}',
-        style: Theme.of(context).textTheme.headline6?.copyWith(
-              color: textColor,
-            ),
-      );
+  // Text _text(BuildContext context, Color? textColor) =>
+  // Text('#${color.toHex()}',
+  // style: Theme.of(context).textTheme.headline6?.copyWith(color: textColor,),);
 }

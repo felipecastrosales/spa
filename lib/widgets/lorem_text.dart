@@ -23,15 +23,21 @@ class _LoremTextState extends State<LoremText> {
   @override
   void initState() {
     super.initState();
-    final randomNumberOfParagraphs =
-        Random(widget.seed).nextInt(maxNumberOfParagraphs);
-    numOfParagraphs = max(randomNumberOfParagraphs, minNumberOfParagraphs);
+    final randomNumberOfParagraphs = Random(widget.seed).nextInt(
+      maxNumberOfParagraphs,
+    );
+    numOfParagraphs = max(
+      randomNumberOfParagraphs,
+      minNumberOfParagraphs,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final paragraphs =
-        lorem(paragraphs: numOfParagraphs, words: numOfParagraphs * 150);
+    final paragraphs = lorem(
+      paragraphs: numOfParagraphs,
+      words: numOfParagraphs * 150,
+    );
     return SelectableText(paragraphs);
   }
 }

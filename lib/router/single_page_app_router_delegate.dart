@@ -16,6 +16,7 @@ class SinglePageAppRouterDelegate
 
   // App state fields
   final ValueNotifier<ColorCode?> _colorCodeNotifier = ValueNotifier(null);
+  final ValueNotifier<TheCode?> _theCodeNotifier = ValueNotifier(null);
   final ValueNotifier<bool?> _unknownStateNotifier = ValueNotifier(null);
 
   String get defaultColorCode => colors.first.toHex();
@@ -26,6 +27,7 @@ class SinglePageAppRouterDelegate
       child: HomeScreen(
         colors: colors,
         colorCodeNotifier: _colorCodeNotifier,
+        theCodeNotifier: _theCodeNotifier,
       ),
     );
     Listenable.merge([
