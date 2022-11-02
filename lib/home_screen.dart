@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:single_page_scrollable_website/color_sections_02.dart';
+import 'package:single_page_scrollable_website/color_sections.dart';
 import 'package:single_page_scrollable_website/common/common.dart';
 
 import 'package:single_page_scrollable_website/widgets/top_navigation_menu.dart';

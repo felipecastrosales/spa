@@ -8,7 +8,7 @@ class SinglePageAppConfiguration {
   SinglePageAppConfiguration.home({String? colorCode})
       : unknown = false,
         shapeBorderType = null,
-        colorCode =  colorCode;
+        colorCode = colorCode;
 
   SinglePageAppConfiguration.shapeBorder(
       String? colorCode, ShapeBorderType? shape)

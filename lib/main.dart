@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:single_page_scrollable_website/router/single_page_app_route_information_parser_02.dart';
-import 'package:single_page_scrollable_website/router/single_page_app_router_delegate_02.dart';
+import 'package:single_page_scrollable_website/router/single_page_app_route_information_parser.dart';
+import 'package:single_page_scrollable_website/router/single_page_app_router_delegate.dart';
 
-import 'configure_nonweb.dart' if (dart.library.html) '../configure_web.dart';
+import '/configs/configure_nonweb.dart'
+    if (dart.library.html) '/configs/configure_web.dart';
 
 void main() {
   configureApp();

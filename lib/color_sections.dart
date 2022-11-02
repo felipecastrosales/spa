@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:single_page_scrollable_website/common/extensions/color_extensions.dart';
-import 'package:single_page_scrollable_website/shape_border_listview_02.dart';
+import 'package:single_page_scrollable_website/shape_border_listview.dart';
 import 'package:single_page_scrollable_website/common/entity/color_code.dart';
 
 import 'common/model/shape_border_type.dart';

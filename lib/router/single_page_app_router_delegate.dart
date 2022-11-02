@@ -20,8 +20,8 @@ import 'package:single_page_scrollable_website/widgets/shape_dialog.dart';
 import 'package:single_page_scrollable_website/widgets/unknown_screen.dart';
 import 'package:single_page_scrollable_website/common/common.dart';
 
-import '../home_screen_02.dart';
-import 'single_page_app_configuration_02.dart';
+import '../home_screen.dart';
+import 'single_page_app_configuration.dart';
 
 class ShapePage extends Page {
   final String colorCode;

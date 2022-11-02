@@ -16,7 +16,7 @@
 import 'package:flutter/material.dart';
 import 'package:single_page_scrollable_website/common/common.dart';
 
-import 'package:single_page_scrollable_website/router/single_page_app_configuration_02.dart';
+import 'package:single_page_scrollable_website/router/single_page_app_configuration.dart';
 
 class SinglePageAppRouteInformationParser
     extends RouteInformationParser<SinglePageAppConfiguration> {
