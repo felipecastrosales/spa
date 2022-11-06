@@ -14,16 +14,23 @@ class SinglePageAppRouteInformationParserNew
     RouteInformation routeInformation,
   ) async {
     final uri = Uri.parse(routeInformation.location ?? '');
+    debugPrint('''
+      SinglePageAppRouteInformationParserNew.parseRouteInformation:
+      uri.pathSegments: ${uri.pathSegments}',
+      uri.pathSegments.length: ${uri.pathSegments.length}
+      ''');
     if (uri.pathSegments.isEmpty) {
+      return SinglePageAppConfigurationNew.home();
+    } else if (uri.pathSegments.length == 1) {
       return SinglePageAppConfigurationNew.home();
     } else if (uri.pathSegments.length == 2) {
       final first = uri.pathSegments[0].toLowerCase();
       final second = uri.pathSegments[1].toLowerCase();
       if (first == '/' && isValidPage(second)) {
-        debugPrint('section ok');
+        debugPrint('sections ok and is valid page :)');
         return SinglePageAppConfigurationNew.home(pageCode: second);
       } else {
-        debugPrint('26 ! first');
+        debugPrint('sections ok but is not valid page :(');
         return SinglePageAppConfigurationNew.unknown();
       }
     } else {
@@ -51,7 +58,7 @@ class SinglePageAppRouteInformationParserNew
 
   bool isValidPage(String pageCode) {
     final List<String> pagesCodes = pages.map((page) {
-      return page.toString();
+      return page.toString().toLowerCase();
     }).toList();
     return pagesCodes.contains(pageCode);
   }
