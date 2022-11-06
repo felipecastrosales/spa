@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Colors.black87,
       body: Column(
         children: [
-          TopNavigationMenu2(
+          TopNavigationMenu(
             pages: pages,
             theCodeNotifier: theCodeNotifier,
           ),

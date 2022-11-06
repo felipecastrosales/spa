@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'widgets.dart';
 
-class TopNavigationMenu2 extends StatelessWidget {
+class TopNavigationMenu extends StatelessWidget {
   final List<Widget> pages;
   final ValueNotifier<TheCode?> theCodeNotifier;
 
-  const TopNavigationMenu2({
+  const TopNavigationMenu({
     Key? key,
     required this.pages,
     required this.theCodeNotifier,

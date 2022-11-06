@@ -22,7 +22,9 @@ class SinglePageAppRouteInformationParser
       ''');
     if (uri.pathSegments.isEmpty) {
       return SinglePageAppConfiguration.home();
-    } else if (uri.pathSegments.length == 1) {
+      // analyze
+    } else if (uri.pathSegments.length == 1 &&
+        isValidPage(uri.pathSegments.first)) {
       return SinglePageAppConfiguration.home();
     } else if (uri.pathSegments.length == 2) {
       final first = uri.pathSegments[0].toLowerCase();
