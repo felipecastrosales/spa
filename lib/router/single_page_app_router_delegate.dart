@@ -10,10 +10,9 @@ class SinglePageAppRouterDelegate
     with
         ChangeNotifier,
         PopNavigatorRouterDelegateMixin<SinglePageAppConfiguration> {
+  late Page _homePage;
   final List<MaterialColor> colors;
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey();
-  late Page _homePage;
-
   // App state fields
   final ValueNotifier<ColorCode?> _colorCodeNotifier = ValueNotifier(null);
   final ValueNotifier<TheCode?> _theCodeNotifier = ValueNotifier(null);
@@ -23,7 +22,7 @@ class SinglePageAppRouterDelegate
 
   SinglePageAppRouterDelegate({required this.colors}) {
     _homePage = MaterialPage(
-      key: const ValueKey<String>("HomePage"),
+      key: const ValueKey<String>('HomePage'),
       child: HomeScreen(
         colors: colors,
         colorCodeNotifier: _colorCodeNotifier,
@@ -33,8 +32,9 @@ class SinglePageAppRouterDelegate
     Listenable.merge([
       _unknownStateNotifier,
       _colorCodeNotifier,
+      _theCodeNotifier,
     ]).addListener(() {
-      debugPrint("notifying the router widget");
+      debugPrint('notifying the router widget');
       notifyListeners();
     });
   }
@@ -60,16 +60,13 @@ class SinglePageAppRouterDelegate
       pages: _unknownStateNotifier.value == true
           ? [
               const MaterialPage(
-                key: ValueKey<String>("Unknown"),
+                key: ValueKey<String>('Unknown'),
                 child: UnknownScreen(),
-              )
+              ),
             ]
-          : [
-              _homePage,
-            ],
+          : [_homePage],
       onPopPage: (route, result) {
         if (!route.didPop(result)) return false;
-
         return true;
       },
     );

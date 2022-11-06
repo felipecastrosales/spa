@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 
 import 'widgets.dart';
 
-class TopNavigationMenu extends StatelessWidget {
+class TopNavigationMenu2 extends StatelessWidget {
   final List<MaterialColor> colors;
-  final ValueNotifier<ColorCode?> colorCodeNotifier;
+  final ValueNotifier<TheCode?> theCodeNotifier;
 
-  const TopNavigationMenu({
+  const TopNavigationMenu2({
     Key? key,
     required this.colors,
-    required this.colorCodeNotifier,
+    required this.theCodeNotifier,
   }) : super(key: key);
 
   int get colorCodeIndex {
-    final selectedHexColorCode = colorCodeNotifier.value?.hexColorCode;
+    final selectedTheCode = theCodeNotifier.value?.theCode;
     int index = colors.indexWhere(
-      (element) => element.toHex() == selectedHexColorCode,
+      (element) => element.toHex() == selectedTheCode,
     );
     return index > -1 ? index : 0;
   }
@@ -24,34 +24,34 @@ class TopNavigationMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: colorCodeNotifier,
-      builder: (BuildContext context, ColorCode? value, Widget? child) {
+      valueListenable: theCodeNotifier,
+      builder: (BuildContext context, TheCode? value, Widget? child) {
         return Container(
           color: Colors.black87,
           child: Wrap(
             direction: Axis.horizontal,
             children: [
               NavigationMenuButton(
-                color: Colors.white,
-                selected: colorCodeIndex == 0,
+                color: Colors.purple,
+                selected: colorCodeIndex == 10,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 8,
                   vertical: 16,
                 ),
                 onPressed: () {},
               ),
-              for (int i = 0; i < colors.length; i++)
+              for (int index = 0; index < colors.length; index++)
                 NavigationMenuButton(
-                  color: colors[i],
-                  selected: colorCodeIndex == i,
+                  color: colors[index],
+                  selected: colorCodeIndex == index,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
                     vertical: 16,
                   ),
                   onPressed: () {
-                    colorCodeNotifier.value = ColorCode(
-                      hexColorCode: colors[i].toHex(),
-                      source: ColorCodeSelectionSource.fromButtonClick,
+                    theCodeNotifier.value = TheCode(
+                      theCode: colors[index].toHex(),
+                      source: TheCodeSelectionSource.fromButtonClick,
                     );
                   },
                 ),

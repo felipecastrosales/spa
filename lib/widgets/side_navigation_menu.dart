@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:single_page_scrollable_website/common/common.dart';
 
-import 'navigation_menu_button.dart';
+import 'widgets.dart';
 
 class SideNavigationMenu extends StatelessWidget {
   final List<MaterialColor> colors;

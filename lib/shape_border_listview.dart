@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:single_page_scrollable_website/common/common.dart';
-import 'package:single_page_scrollable_website/widgets/shaped_button.dart';
+import 'package:single_page_scrollable_website/widgets/widgets.dart';
 
 class ShapeBorderListView extends StatelessWidget {
   final ValueNotifier<ColorCode?> colorCodeNotifier;

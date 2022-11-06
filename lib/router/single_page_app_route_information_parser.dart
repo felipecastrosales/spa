@@ -4,9 +4,8 @@ import 'package:single_page_scrollable_website/router/single_page_app_configurat
 
 class SinglePageAppRouteInformationParser
     extends RouteInformationParser<SinglePageAppConfiguration> {
-  final List<MaterialColor> colors;
-
   SinglePageAppRouteInformationParser({required this.colors});
+  final List<MaterialColor> colors;
 
   @override
   Future<SinglePageAppConfiguration> parseRouteInformation(
