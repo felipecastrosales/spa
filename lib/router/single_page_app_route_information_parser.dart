@@ -4,13 +4,16 @@ import 'package:single_page_scrollable_website/router/single_page_app_configurat
 
 class SinglePageAppRouteInformationParser
     extends RouteInformationParser<SinglePageAppConfiguration> {
-  SinglePageAppRouteInformationParser({required this.colors});
+  SinglePageAppRouteInformationParser({
+    required this.colors,
+  });
+
   final List<MaterialColor> colors;
 
   @override
   Future<SinglePageAppConfiguration> parseRouteInformation(
       RouteInformation routeInformation) async {
-    final uri = Uri.parse(routeInformation.location!);
+    final uri = Uri.parse(routeInformation.location ?? '');
     if (uri.pathSegments.isEmpty) {
       return SinglePageAppConfiguration.home();
     } else if (uri.pathSegments.length == 2) {

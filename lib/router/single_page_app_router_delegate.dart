@@ -86,7 +86,7 @@ class SinglePageAppRouterDelegate
     } else if (configuration.isShapePage) {
       _unknownStateNotifier.value = false;
       _colorCodeNotifier.value = ColorCode(
-        hexColorCode: configuration.colorCode!,
+        hexColorCode: configuration.colorCode ?? defaultColorCode,
         source: ColorCodeSelectionSource.fromBrowserAddressBar,
       );
     }
