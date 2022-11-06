@@ -5,15 +5,15 @@ import 'package:single_page_scrollable_website/widgets/widgets.dart';
 
 import 'code_sections_new.dart';
 
-class HomeScreen extends StatelessWidget {
-  final List<MaterialColor> colors;
+class HomeScreenNew extends StatelessWidget {
+  final List<Widget> pages;
 
   final ValueNotifier<TheCode?> theCodeNotifier;
   // final List<Widget> sections;
 
-  const HomeScreen({
+  const HomeScreenNew({
     Key? key,
-    required this.colors,
+    required this.pages,
 
     // required this.sections,
     required this.theCodeNotifier,
@@ -26,7 +26,11 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: [
           TopNavigationMenu2(
-            colors: colors,
+            // pages: pages,
+            colors: List.generate(
+              18,
+              (index) => Colors.primaries[index],
+            ),
             theCodeNotifier: theCodeNotifier,
           ),
           Expanded(

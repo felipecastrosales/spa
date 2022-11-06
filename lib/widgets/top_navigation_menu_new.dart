@@ -1,7 +1,7 @@
 import 'package:single_page_scrollable_website/common/common.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets.dart';
+import 'navigation_menu_button_new.dart';
 
 class TopNavigationMenu2 extends StatelessWidget {
   final List<MaterialColor> colors;
@@ -31,22 +31,18 @@ class TopNavigationMenu2 extends StatelessWidget {
           child: Wrap(
             direction: Axis.horizontal,
             children: [
-              NavigationMenuButton(
-                color: Colors.purple,
-                selected: colorCodeIndex == 0,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 16,
-                ),
-                onPressed: () {
-                  theCodeNotifier.value = TheCode(
-                    theCode: colors[10].toHex(),
-                    source: TheCodeSelectionSource.fromButtonClick,
-                  );
-                },
-              ),
+              // NavigationMenuButtonNew(
+              //   color: Colors.purple,
+              //   selected: colorCodeIndex == 0,
+              //   onPressed: () {
+              //     theCodeNotifier.value = TheCode(
+              //       theCode: colors[10].toHex(),
+              //       source: TheCodeSelectionSource.fromButtonClick,
+              //     );
+              //   },
+              // ),
               for (int index = 0; index < colors.length; index++)
-                NavigationMenuButton(
+                NavigationMenuButtonNew(
                   color: colors[index],
                   selected: colorCodeIndex == index,
                   padding: const EdgeInsets.symmetric(

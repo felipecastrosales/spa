@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'router/single_page_app_route_information_parser.dart';
-import 'router/single_page_app_router_delegate.dart';
+import 'pages/pages.dart';
+import 'router/single_page_app_route_information_parser_new.dart';
+import 'router/single_page_app_router_delegate_new.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -11,15 +12,15 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  late SinglePageAppRouterDelegate delegate;
-  late SinglePageAppRouteInformationParser parser;
-  final _colors = Colors.primaries.reversed.toList();
+  late SinglePageAppRouterDelegateNew delegate;
+  late SinglePageAppRouteInformationParserNew parser;
+  final pages = const [Page1(), Page2(), Page3(), Page4(), Page5()];
 
   @override
   void initState() {
     super.initState();
-    delegate = SinglePageAppRouterDelegate(colors: _colors);
-    parser = SinglePageAppRouteInformationParser(colors: _colors);
+    delegate = SinglePageAppRouterDelegateNew(pages: pages);
+    parser = SinglePageAppRouteInformationParserNew(pages: pages);
   }
 
   @override

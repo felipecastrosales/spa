@@ -16,5 +16,5 @@ class TheCode extends Equatable {
 enum TheCodeSelectionSource {
   fromScroll,
   fromButtonClick,
-  fromBrowserAddressBar
+  fromBrowserAddressBar,
 }
