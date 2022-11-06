@@ -1,51 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:single_page_scrollable_website/common/common.dart';
 
 class NavigationMenuButtonNew extends StatelessWidget {
-  final Color color;
+  final String title;
   final bool selected;
   final EdgeInsets padding;
   final VoidCallback onPressed;
 
   const NavigationMenuButtonNew({
     Key? key,
-    required this.color,
+    required this.title,
     required this.selected,
     required this.onPressed,
-    this.padding = EdgeInsets.zero,
+    this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme.headline6;
-    Brightness brightness = ThemeData.estimateBrightnessForColor(color);
-    Color textColor =
-        brightness == Brightness.light ? Colors.black : Colors.white;
 
     return Padding(
       padding: padding,
       child: selected
           ? ElevatedButton(
               onPressed: () {},
-              style: ElevatedButton.styleFrom(backgroundColor: color),
-              // child: _text(context, textColor),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               child: Text(
-                '#${color.toHex()}',
-                style: textTheme?.copyWith(color: textColor),
+                title,
+                style: textTheme?.copyWith(color: Colors.white),
               ),
             )
           : TextButton(
               onPressed: onPressed,
-              // child: _text(context, color),
               child: Text(
-                '#${color.toHex()}',
-                style: textTheme?.copyWith(color: color),
+                title,
+                style: textTheme?.copyWith(color: Colors.blue),
               ),
             ),
     );
   }
-
-  // Text _text(BuildContext context, Color? textColor) =>
-  // Text('#${color.toHex()}',
-  // style: Theme.of(context).textTheme.headline6?.copyWith(color: textColor,),);
 }

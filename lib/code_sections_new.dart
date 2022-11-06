@@ -19,6 +19,7 @@ class _CodeSectionsNewState extends State<CodeSectionsNew> {
   final double _minPageHeight = 600;
   PageController _pageController = PageController();
   final List<Widget> buildPages = const [
+    Page0(),
     Page1(),
     Page2(),
     Page3(),
@@ -29,7 +30,7 @@ class _CodeSectionsNewState extends State<CodeSectionsNew> {
   int get _buildPagesIndex {
     final pageCode = widget.theCodeNotifier.value?.theCode;
     int index = buildPages.indexWhere((element) {
-      return element.toString() == pageCode;
+      return element.toString().toLowerCase() == pageCode;
     });
     return index > -1 ? index : 0;
   }
@@ -96,7 +97,7 @@ class _CodeSectionsNewState extends State<CodeSectionsNew> {
 
   void _onUserScroll() {
     final pageIndex = _pageController.page?.floor() ?? 0;
-    final pageCode = buildPages[pageIndex].toString();
+    final pageCode = buildPages[pageIndex].toString().toLowerCase();
     widget.theCodeNotifier.value = TheCode(
       theCode: pageCode,
       source: TheCodeSelectionSource.fromScroll,

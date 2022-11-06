@@ -26,11 +26,7 @@ class HomeScreenNew extends StatelessWidget {
       body: Column(
         children: [
           TopNavigationMenu2(
-            // pages: pages,
-            colors: List.generate(
-              18,
-              (index) => Colors.primaries[index],
-            ),
+            pages: pages,
             theCodeNotifier: theCodeNotifier,
           ),
           Expanded(

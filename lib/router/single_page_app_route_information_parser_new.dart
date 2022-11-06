@@ -21,7 +21,7 @@ class SinglePageAppRouteInformationParserNew
       final second = uri.pathSegments[1].toLowerCase();
       if (first == 'section' && _isValidPage(second)) {
         debugPrint('section ok');
-        return SinglePageAppConfigurationNew.home(colorCode: second);
+        return SinglePageAppConfigurationNew.home(pageCode: second);
       } else {
         debugPrint('26 ! first');
         return SinglePageAppConfigurationNew.unknown();
@@ -52,12 +52,11 @@ class SinglePageAppRouteInformationParserNew
       return const RouteInformation(location: '/unknown');
     } else if (configuration.isHomePage) {
       return RouteInformation(
-        location: configuration.colorCode == null
-            ? '/'
-            : '/colors/${configuration.colorCode}',
+        location:
+            configuration.pageCode == null ? '/' : '/${configuration.pageCode}',
       );
     } else if (configuration.isShapePage) {
-      final location = '/colors/${configuration.colorCode}';
+      final location = '/${configuration.pageCode}';
       return RouteInformation(location: location);
     } else {
       return null;

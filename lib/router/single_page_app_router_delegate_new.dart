@@ -3,13 +3,13 @@ import 'package:single_page_scrollable_website/home_screen_new.dart';
 import 'package:single_page_scrollable_website/widgets/unknown_screen.dart';
 import 'package:single_page_scrollable_website/common/common.dart';
 
-import 'single_page_app_configuration.dart';
+import 'single_page_app_configuration_new.dart';
 
 class SinglePageAppRouterDelegateNew
-    extends RouterDelegate<SinglePageAppConfiguration>
+    extends RouterDelegate<SinglePageAppConfigurationNew>
     with
         ChangeNotifier,
-        PopNavigatorRouterDelegateMixin<SinglePageAppConfiguration> {
+        PopNavigatorRouterDelegateMixin<SinglePageAppConfigurationNew> {
   late Page _homePage;
   final List<Widget> pages;
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey();
@@ -41,12 +41,12 @@ class SinglePageAppRouterDelegateNew
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
 
   @override
-  SinglePageAppConfiguration get currentConfiguration {
+  SinglePageAppConfigurationNew get currentConfiguration {
     if (_unknownStateNotifier.value == true) {
-      return SinglePageAppConfiguration.unknown();
+      return SinglePageAppConfigurationNew.unknown();
     } else {
-      return SinglePageAppConfiguration.home(
-        colorCode: _theCodeNotifier.value?.theCode,
+      return SinglePageAppConfigurationNew.home(
+        pageCode: _theCodeNotifier.value?.theCode,
       );
     }
   }
@@ -71,20 +71,22 @@ class SinglePageAppRouterDelegateNew
   }
 
   @override
-  Future<void> setNewRoutePath(SinglePageAppConfiguration configuration) async {
+  Future<void> setNewRoutePath(
+    SinglePageAppConfigurationNew configuration,
+  ) async {
     if (configuration.unknown) {
       _unknownStateNotifier.value = true;
       _theCodeNotifier.value = null;
     } else if (configuration.isHomePage) {
       _unknownStateNotifier.value = false;
       _theCodeNotifier.value = TheCode(
-        theCode: configuration.colorCode ?? defaultPage,
+        theCode: configuration.pageCode ?? defaultPage,
         source: TheCodeSelectionSource.fromBrowserAddressBar,
       );
     } else if (configuration.isShapePage) {
       _unknownStateNotifier.value = false;
       _theCodeNotifier.value = TheCode(
-        theCode: configuration.colorCode ?? defaultPage,
+        theCode: configuration.pageCode ?? defaultPage,
         source: TheCodeSelectionSource.fromBrowserAddressBar,
       );
     }

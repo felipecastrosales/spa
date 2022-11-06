@@ -14,7 +14,7 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   late SinglePageAppRouterDelegateNew delegate;
   late SinglePageAppRouteInformationParserNew parser;
-  final pages = const [Page1(), Page2(), Page3(), Page4(), Page5()];
+  final pages = const [Page0(), Page1(), Page2(), Page3(), Page4(), Page5()];
 
   @override
   void initState() {

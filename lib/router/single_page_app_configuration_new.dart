@@ -1,20 +1,20 @@
 class SinglePageAppConfigurationNew {
-  final String? colorCode;
+  final String? pageCode;
   final bool unknown;
 
-  SinglePageAppConfigurationNew.home({String? colorCode})
+  SinglePageAppConfigurationNew.home({String? pageCode})
       : unknown = false,
-        colorCode = colorCode;
+        pageCode = pageCode;
 
-  SinglePageAppConfigurationNew.shapeBorder(String? colorCode)
+  SinglePageAppConfigurationNew.shapeBorder(String? pageCode)
       : unknown = false,
-        colorCode = colorCode;
+        pageCode = pageCode;
 
   SinglePageAppConfigurationNew.unknown()
       : unknown = true,
-        colorCode = null;
+        pageCode = null;
 
   bool get isUnknown => unknown == true;
   bool get isHomePage => unknown == false;
-  bool get isShapePage => unknown == false && colorCode != null;
+  bool get isShapePage => unknown == false && pageCode != null;
 }

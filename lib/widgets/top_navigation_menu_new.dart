@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 import 'navigation_menu_button_new.dart';
 
 class TopNavigationMenu2 extends StatelessWidget {
-  final List<MaterialColor> colors;
+  final List<Widget> pages;
   final ValueNotifier<TheCode?> theCodeNotifier;
 
   const TopNavigationMenu2({
     Key? key,
-    required this.colors,
+    required this.pages,
     required this.theCodeNotifier,
   }) : super(key: key);
 
-  int get colorCodeIndex {
+  int get pageCodeIndex {
     final selectedTheCode = theCodeNotifier.value?.theCode;
-    int index = colors.indexWhere(
-      (element) => element.toHex() == selectedTheCode,
+    int index = pages.indexWhere(
+      (element) => element.toString().toLowerCase() == selectedTheCode,
     );
     return index > -1 ? index : 0;
   }
@@ -31,31 +31,81 @@ class TopNavigationMenu2 extends StatelessWidget {
           child: Wrap(
             direction: Axis.horizontal,
             children: [
-              // NavigationMenuButtonNew(
-              //   color: Colors.purple,
-              //   selected: colorCodeIndex == 0,
-              //   onPressed: () {
-              //     theCodeNotifier.value = TheCode(
-              //       theCode: colors[10].toHex(),
-              //       source: TheCodeSelectionSource.fromButtonClick,
-              //     );
-              //   },
-              // ),
-              for (int index = 0; index < colors.length; index++)
-                NavigationMenuButtonNew(
-                  color: colors[index],
-                  selected: colorCodeIndex == index,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 16,
-                  ),
-                  onPressed: () {
-                    theCodeNotifier.value = TheCode(
-                      theCode: colors[index].toHex(),
-                      source: TheCodeSelectionSource.fromButtonClick,
-                    );
-                  },
-                ),
+              //       for (int index = 0; index < colors.length; index++)
+              //     NavigationMenuButton(
+              //       color: colors[index],
+              //       selected: colorCodeIndex == index,
+              //       padding: const EdgeInsets.symmetric(
+              //         horizontal: 8,
+              //         vertical: 16,
+              //       ),
+              //       onPressed: () {
+              //         theCodeNotifier.value = TheCode(
+              //           theCode: colors[index].toHex(),
+              //           source: TheCodeSelectionSource.fromButtonClick,
+              //         );
+              //       },
+              //     ),
+              NavigationMenuButtonNew(
+                title: 'P0',
+                selected: pageCodeIndex == 0,
+                onPressed: () {
+                  theCodeNotifier.value = TheCode(
+                    theCode: pages[0].toString(),
+                    source: TheCodeSelectionSource.fromButtonClick,
+                  );
+                },
+              ),
+              NavigationMenuButtonNew(
+                title: 'P1',
+                selected: pageCodeIndex == 1,
+                onPressed: () {
+                  theCodeNotifier.value = TheCode(
+                    theCode: pages[1].toString().toLowerCase(),
+                    source: TheCodeSelectionSource.fromButtonClick,
+                  );
+                },
+              ),
+              NavigationMenuButtonNew(
+                title: 'P2',
+                selected: pageCodeIndex == 2,
+                onPressed: () {
+                  theCodeNotifier.value = TheCode(
+                    theCode: pages[2].toString().toLowerCase(),
+                    source: TheCodeSelectionSource.fromButtonClick,
+                  );
+                },
+              ),
+              NavigationMenuButtonNew(
+                title: 'P3',
+                selected: pageCodeIndex == 3,
+                onPressed: () {
+                  theCodeNotifier.value = TheCode(
+                    theCode: pages[3].toString().toLowerCase(),
+                    source: TheCodeSelectionSource.fromButtonClick,
+                  );
+                },
+              ),
+              NavigationMenuButtonNew(
+                title: 'P4',
+                selected: pageCodeIndex == 4,
+                onPressed: () {
+                  theCodeNotifier.value = TheCode(
+                    theCode: pages[4].toString().toLowerCase(),
+                    source: TheCodeSelectionSource.fromButtonClick,
+                  );
+                },
+              ),
+              NavigationMenuButtonNew(
+                title: 'P5',
+                selected: pageCodeIndex == 5,
+                onPressed: () {
+                  theCodeNotifier.value = TheCode(
+                    theCode: pages[5].toString().toLowerCase(),
+                    source: TheCodeSelectionSource.fromButtonClick,
+                  );
+                },
+              ),
             ],
           ),
         );
