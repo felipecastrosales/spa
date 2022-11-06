@@ -26,19 +26,8 @@ class SinglePageAppRouteInformationParserNew
         debugPrint('26 ! first');
         return SinglePageAppConfigurationNew.unknown();
       }
-    } else if (uri.pathSegments.length == 3) {
-      debugPrint('30');
-      final first = uri.pathSegments[0].toLowerCase();
-      final second = uri.pathSegments[1].toLowerCase();
-      if (first == 'colors') {
-        debugPrint('3');
-        return SinglePageAppConfigurationNew.shapeBorder(second);
-      } else {
-        debugPrint('unknown 37');
-        return SinglePageAppConfigurationNew.unknown();
-      }
     } else {
-      debugPrint('unknown 41');
+      debugPrint('unknown 30');
       return SinglePageAppConfigurationNew.unknown();
     }
   }
