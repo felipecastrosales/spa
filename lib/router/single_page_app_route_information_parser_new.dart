@@ -19,7 +19,7 @@ class SinglePageAppRouteInformationParserNew
     } else if (uri.pathSegments.length == 2) {
       final first = uri.pathSegments[0].toLowerCase();
       final second = uri.pathSegments[1].toLowerCase();
-      if (first == 'section' && _isValidPage(second)) {
+      if (first == '/' && isValidPage(second)) {
         debugPrint('section ok');
         return SinglePageAppConfigurationNew.home(pageCode: second);
       } else {
@@ -44,18 +44,14 @@ class SinglePageAppRouteInformationParserNew
         location:
             configuration.pageCode == null ? '/' : '/${configuration.pageCode}',
       );
-    } else if (configuration.isShapePage) {
-      final location = '/${configuration.pageCode}';
-      return RouteInformation(location: location);
     } else {
       return null;
     }
   }
 
-  bool _isValidPage(String pageCode) {
-    final List<String> pagesCodes = pages.map((element) {
-      final page = element as MaterialPage;
-      return page.key.toString();
+  bool isValidPage(String pageCode) {
+    final List<String> pagesCodes = pages.map((page) {
+      return page.toString();
     }).toList();
     return pagesCodes.contains(pageCode);
   }

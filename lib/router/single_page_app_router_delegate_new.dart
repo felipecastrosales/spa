@@ -23,7 +23,7 @@ class SinglePageAppRouterDelegateNew
     required this.pages,
   }) {
     _homePage = MaterialPage(
-      key: const ValueKey<String>('HomePage'),
+      key: const ValueKey<String>('HomeScreen'),
       child: HomeScreenNew(
         pages: pages,
         theCodeNotifier: _theCodeNotifier,
@@ -59,7 +59,7 @@ class SinglePageAppRouterDelegateNew
       pages: _unknownStateNotifier.value == true
           ? [
               const MaterialPage(
-                key: ValueKey<String>('Unknown'),
+                key: ValueKey<String>('UnknownScreen'),
                 child: UnknownScreen(),
               ),
             ]
@@ -78,13 +78,7 @@ class SinglePageAppRouterDelegateNew
     if (configuration.unknown) {
       _unknownStateNotifier.value = true;
       _theCodeNotifier.value = null;
-    } else if (configuration.isHomePage) {
-      _unknownStateNotifier.value = false;
-      _theCodeNotifier.value = TheCode(
-        theCode: configuration.pageCode ?? defaultPage,
-        source: TheCodeSelectionSource.fromBrowserAddressBar,
-      );
-    } else if (configuration.isShapePage) {
+    } else {
       _unknownStateNotifier.value = false;
       _theCodeNotifier.value = TheCode(
         theCode: configuration.pageCode ?? defaultPage,
