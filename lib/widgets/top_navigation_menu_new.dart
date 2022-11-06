@@ -25,33 +25,18 @@ class TopNavigationMenu2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: theCodeNotifier,
-      builder: (BuildContext context, TheCode? value, Widget? child) {
+      builder: (context, value, child) {
         return Container(
           color: Colors.black87,
           child: Wrap(
             direction: Axis.horizontal,
             children: [
-              //       for (int index = 0; index < colors.length; index++)
-              //     NavigationMenuButton(
-              //       color: colors[index],
-              //       selected: colorCodeIndex == index,
-              //       padding: const EdgeInsets.symmetric(
-              //         horizontal: 8,
-              //         vertical: 16,
-              //       ),
-              //       onPressed: () {
-              //         theCodeNotifier.value = TheCode(
-              //           theCode: colors[index].toHex(),
-              //           source: TheCodeSelectionSource.fromButtonClick,
-              //         );
-              //       },
-              //     ),
               NavigationMenuButtonNew(
                 title: 'P0',
                 selected: pageCodeIndex == 0,
                 onPressed: () {
                   theCodeNotifier.value = TheCode(
-                    theCode: pages[0].toString(),
+                    theCode: pages[0].toString().toLowerCase(),
                     source: TheCodeSelectionSource.fromButtonClick,
                   );
                 },

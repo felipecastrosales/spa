@@ -13,14 +13,15 @@ class SinglePageAppRouterDelegateNew
   late Page _homePage;
   final List<Widget> pages;
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey();
-  // App state fields
 
   final ValueNotifier<TheCode?> _theCodeNotifier = ValueNotifier(null);
   final ValueNotifier<bool?> _unknownStateNotifier = ValueNotifier(null);
 
   String get defaultPage => pages.first.toString();
 
-  SinglePageAppRouterDelegateNew({required this.pages}) {
+  SinglePageAppRouterDelegateNew({
+    required this.pages,
+  }) {
     _homePage = MaterialPage(
       key: const ValueKey<String>('HomePage'),
       child: HomeScreenNew(

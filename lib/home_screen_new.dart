@@ -31,6 +31,7 @@ class HomeScreenNew extends StatelessWidget {
           ),
           Expanded(
             child: CodeSectionsNew(
+              pages: pages,
               theCodeNotifier: theCodeNotifier,
             ),
           ),

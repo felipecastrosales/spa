@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:single_page_scrollable_website/common/entity/entity.dart';
 
-import 'pages/pages.dart';
-
 class CodeSectionsNew extends StatefulWidget {
+  final List<Widget> pages;
   final ValueNotifier<TheCode?> theCodeNotifier;
 
   const CodeSectionsNew({
     Key? key,
+    required this.pages,
     required this.theCodeNotifier,
   }) : super(key: key);
 
@@ -18,18 +18,10 @@ class CodeSectionsNew extends StatefulWidget {
 class _CodeSectionsNewState extends State<CodeSectionsNew> {
   final double _minPageHeight = 600;
   PageController _pageController = PageController();
-  final List<Widget> buildPages = const [
-    Page0(),
-    Page1(),
-    Page2(),
-    Page3(),
-    Page4(),
-    Page5(),
-  ];
 
   int get _buildPagesIndex {
     final pageCode = widget.theCodeNotifier.value?.theCode;
-    int index = buildPages.indexWhere((element) {
+    int index = widget.pages.indexWhere((element) {
       return element.toString().toLowerCase() == pageCode;
     });
     return index > -1 ? index : 0;
@@ -41,11 +33,9 @@ class _CodeSectionsNewState extends State<CodeSectionsNew> {
     widget.theCodeNotifier.addListener(() {
       final fromScroll = widget.theCodeNotifier.value?.source ==
           ColorCodeSelectionSource.fromScroll;
-
-      /// "Get build pages to animat"
       if (_pageController.hasClients && !fromScroll) {
         _pageController.animateToPage(
-          buildPages.length - 1,
+          _buildPagesIndex,
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
         );
@@ -70,10 +60,10 @@ class _CodeSectionsNewState extends State<CodeSectionsNew> {
             pageSnapping: false,
             scrollDirection: Axis.vertical,
             controller: _pageController,
-            itemCount: buildPages.length,
+            itemCount: widget.pages.length,
             physics: const AlwaysScrollableScrollPhysics(),
-            itemBuilder: (BuildContext context, int index) {
-              return buildPages[index];
+            itemBuilder: (context, index) {
+              return widget.pages[index];
             },
           ),
         );
@@ -97,7 +87,7 @@ class _CodeSectionsNewState extends State<CodeSectionsNew> {
 
   void _onUserScroll() {
     final pageIndex = _pageController.page?.floor() ?? 0;
-    final pageCode = buildPages[pageIndex].toString().toLowerCase();
+    final pageCode = widget.pages[pageIndex].toString().toLowerCase();
     widget.theCodeNotifier.value = TheCode(
       theCode: pageCode,
       source: TheCodeSelectionSource.fromScroll,
