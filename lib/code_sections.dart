@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:single_page_scrollable_website/common/extensions/color_extensions.dart';
 import 'package:single_page_scrollable_website/common/entity/entity.dart';
 
 class CodeSections extends StatefulWidget {
-  final List<MaterialColor> colors;
+  final List<Widget> pages;
   final ValueNotifier<TheCode?> theCodeNotifier;
 
   const CodeSections({
     Key? key,
-    required this.colors,
+    required this.pages,
     required this.theCodeNotifier,
   }) : super(key: key);
 
@@ -17,15 +16,13 @@ class CodeSections extends StatefulWidget {
 }
 
 class _CodeSectionsState extends State<CodeSections> {
-  final double _minPageHeight = 600;
+  final double _minPageHeight = 400;
   PageController _pageController = PageController();
 
-  // Find the index of the color code from the colors list
-  int get _colorCodeIndex {
-    final hexColorCode = widget.theCodeNotifier.value?.theCode;
-    // final hexColorCode = widget.colorCodeNotifier.value?.hexColorCode;
-    int index = widget.colors.indexWhere((element) {
-      return element.toHex() == hexColorCode;
+  int get _buildPagesIndex {
+    final pageCode = widget.theCodeNotifier.value?.theCode;
+    int index = widget.pages.indexWhere((page) {
+      return page.toString().toLowerCase() == pageCode;
     });
     return index > -1 ? index : 0;
   }
@@ -35,10 +32,10 @@ class _CodeSectionsState extends State<CodeSections> {
     super.initState();
     widget.theCodeNotifier.addListener(() {
       final fromScroll = widget.theCodeNotifier.value?.source ==
-          ColorCodeSelectionSource.fromScroll;
+          TheCodeSelectionSource.fromScroll;
       if (_pageController.hasClients && !fromScroll) {
         _pageController.animateToPage(
-          _colorCodeIndex,
+          _buildPagesIndex,
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
         );
@@ -63,13 +60,10 @@ class _CodeSectionsState extends State<CodeSections> {
             pageSnapping: false,
             scrollDirection: Axis.vertical,
             controller: _pageController,
-            itemCount: widget.colors.length,
+            itemCount: widget.pages.length,
             physics: const AlwaysScrollableScrollPhysics(),
-            itemBuilder: (BuildContext context, int index) {
-              final color = widget.colors[index];
-              return Container(
-                color: color,
-              );
+            itemBuilder: (context, index) {
+              return widget.pages[index];
             },
           ),
         );
@@ -81,21 +75,21 @@ class _CodeSectionsState extends State<CodeSections> {
     if (availableHeight < _minPageHeight) {
       _pageController = PageController(
         viewportFraction: _minPageHeight / availableHeight,
-        initialPage: _colorCodeIndex,
+        initialPage: _buildPagesIndex,
       );
     } else {
       _pageController = PageController(
         viewportFraction: 1,
-        initialPage: _colorCodeIndex,
+        initialPage: _buildPagesIndex,
       );
     }
   }
 
   void _onUserScroll() {
     final pageIndex = _pageController.page?.floor() ?? 0;
-    final hexColorCode = widget.colors[pageIndex].toHex();
+    final pageCode = widget.pages[pageIndex].toString().toLowerCase();
     widget.theCodeNotifier.value = TheCode(
-      theCode: hexColorCode,
+      theCode: pageCode,
       source: TheCodeSelectionSource.fromScroll,
     );
   }

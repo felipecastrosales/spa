@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 
 import 'widgets.dart';
 
-class TopNavigationMenu extends StatelessWidget {
-  final List<MaterialColor> colors;
-  final ValueNotifier<ColorCode?> colorCodeNotifier;
+class TopNavigationMenu2 extends StatelessWidget {
+  final List<Widget> pages;
+  final ValueNotifier<TheCode?> theCodeNotifier;
 
-  const TopNavigationMenu({
+  const TopNavigationMenu2({
     Key? key,
-    required this.colors,
-    required this.colorCodeNotifier,
+    required this.pages,
+    required this.theCodeNotifier,
   }) : super(key: key);
 
-  int get colorCodeIndex {
-    final selectedHexColorCode = colorCodeNotifier.value?.hexColorCode;
-    int index = colors.indexWhere(
-      (element) => element.toHex() == selectedHexColorCode,
+  int get pageCodeIndex {
+    final selectedTheCode = theCodeNotifier.value?.theCode;
+    int index = pages.indexWhere(
+      (element) => element.toString().toLowerCase() == selectedTheCode,
     );
     return index > -1 ? index : 0;
   }
@@ -24,37 +24,73 @@ class TopNavigationMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: colorCodeNotifier,
-      builder: (BuildContext context, ColorCode? value, Widget? child) {
+      valueListenable: theCodeNotifier,
+      builder: (context, value, child) {
         return Container(
           color: Colors.black87,
           child: Wrap(
             direction: Axis.horizontal,
             children: [
               NavigationMenuButton(
-                color: Colors.white,
-                selected: colorCodeIndex == 0,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 16,
-                ),
-                onPressed: () {},
+                title: 'P0',
+                selected: pageCodeIndex == 0,
+                onPressed: () {
+                  theCodeNotifier.value = TheCode(
+                    theCode: pages[0].toString().toLowerCase(),
+                    source: TheCodeSelectionSource.fromButtonClick,
+                  );
+                },
               ),
-              for (int i = 0; i < colors.length; i++)
-                NavigationMenuButton(
-                  color: colors[i],
-                  selected: colorCodeIndex == i,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 16,
-                  ),
-                  onPressed: () {
-                    colorCodeNotifier.value = ColorCode(
-                      hexColorCode: colors[i].toHex(),
-                      source: ColorCodeSelectionSource.fromButtonClick,
-                    );
-                  },
-                ),
+              NavigationMenuButton(
+                title: 'P1',
+                selected: pageCodeIndex == 1,
+                onPressed: () {
+                  theCodeNotifier.value = TheCode(
+                    theCode: pages[1].toString().toLowerCase(),
+                    source: TheCodeSelectionSource.fromButtonClick,
+                  );
+                },
+              ),
+              NavigationMenuButton(
+                title: 'P2',
+                selected: pageCodeIndex == 2,
+                onPressed: () {
+                  theCodeNotifier.value = TheCode(
+                    theCode: pages[2].toString().toLowerCase(),
+                    source: TheCodeSelectionSource.fromButtonClick,
+                  );
+                },
+              ),
+              NavigationMenuButton(
+                title: 'P3',
+                selected: pageCodeIndex == 3,
+                onPressed: () {
+                  theCodeNotifier.value = TheCode(
+                    theCode: pages[3].toString().toLowerCase(),
+                    source: TheCodeSelectionSource.fromButtonClick,
+                  );
+                },
+              ),
+              NavigationMenuButton(
+                title: 'P4',
+                selected: pageCodeIndex == 4,
+                onPressed: () {
+                  theCodeNotifier.value = TheCode(
+                    theCode: pages[4].toString().toLowerCase(),
+                    source: TheCodeSelectionSource.fromButtonClick,
+                  );
+                },
+              ),
+              NavigationMenuButton(
+                title: 'P5',
+                selected: pageCodeIndex == 5,
+                onPressed: () {
+                  theCodeNotifier.value = TheCode(
+                    theCode: pages[5].toString().toLowerCase(),
+                    source: TheCodeSelectionSource.fromButtonClick,
+                  );
+                },
+              ),
             ],
           ),
         );

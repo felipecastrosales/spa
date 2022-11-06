@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:single_page_scrollable_website/home_screen.dart';
-import 'package:single_page_scrollable_website/widgets/unknown_screen.dart';
+
+import 'package:single_page_scrollable_website/widgets/widgets.dart';
 import 'package:single_page_scrollable_website/common/common.dart';
 
-import 'single_page_app_configuration.dart';
+import 'router.dart';
 
 class SinglePageAppRouterDelegate
     extends RouterDelegate<SinglePageAppConfiguration>
@@ -11,27 +12,26 @@ class SinglePageAppRouterDelegate
         ChangeNotifier,
         PopNavigatorRouterDelegateMixin<SinglePageAppConfiguration> {
   late Page _homePage;
-  final List<MaterialColor> colors;
+  final List<Widget> pages;
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey();
-  // App state fields
-  final ValueNotifier<ColorCode?> _colorCodeNotifier = ValueNotifier(null);
+
   final ValueNotifier<TheCode?> _theCodeNotifier = ValueNotifier(null);
   final ValueNotifier<bool?> _unknownStateNotifier = ValueNotifier(null);
 
-  String get defaultColorCode => colors.first.toHex();
+  String get defaultPage => pages.first.toString().toLowerCase();
 
-  SinglePageAppRouterDelegate({required this.colors}) {
+  SinglePageAppRouterDelegate({
+    required this.pages,
+  }) {
     _homePage = MaterialPage(
-      key: const ValueKey<String>('HomePage'),
+      key: const ValueKey<String>('HomeScreen'),
       child: HomeScreen(
-        colors: colors,
-        // colorCodeNotifier: _colorCodeNotifier,
+        pages: pages,
         theCodeNotifier: _theCodeNotifier,
       ),
     );
     Listenable.merge([
       _unknownStateNotifier,
-      _colorCodeNotifier,
       _theCodeNotifier,
     ]).addListener(() {
       debugPrint('notifying the router widget');
@@ -48,7 +48,7 @@ class SinglePageAppRouterDelegate
       return SinglePageAppConfiguration.unknown();
     } else {
       return SinglePageAppConfiguration.home(
-        colorCode: _colorCodeNotifier.value?.hexColorCode,
+        pageCode: _theCodeNotifier.value?.theCode,
       );
     }
   }
@@ -60,7 +60,7 @@ class SinglePageAppRouterDelegate
       pages: _unknownStateNotifier.value == true
           ? [
               const MaterialPage(
-                key: ValueKey<String>('Unknown'),
+                key: ValueKey<String>('UnknownScreen'),
                 child: UnknownScreen(),
               ),
             ]
@@ -73,21 +73,17 @@ class SinglePageAppRouterDelegate
   }
 
   @override
-  Future<void> setNewRoutePath(SinglePageAppConfiguration configuration) async {
+  Future<void> setNewRoutePath(
+    SinglePageAppConfiguration configuration,
+  ) async {
     if (configuration.unknown) {
       _unknownStateNotifier.value = true;
-      _colorCodeNotifier.value = null;
-    } else if (configuration.isHomePage) {
+      _theCodeNotifier.value = null;
+    } else {
       _unknownStateNotifier.value = false;
-      _colorCodeNotifier.value = ColorCode(
-        hexColorCode: configuration.colorCode ?? defaultColorCode,
-        source: ColorCodeSelectionSource.fromBrowserAddressBar,
-      );
-    } else if (configuration.isShapePage) {
-      _unknownStateNotifier.value = false;
-      _colorCodeNotifier.value = ColorCode(
-        hexColorCode: configuration.colorCode ?? defaultColorCode,
-        source: ColorCodeSelectionSource.fromBrowserAddressBar,
+      _theCodeNotifier.value = TheCode(
+        theCode: configuration.pageCode ?? defaultPage,
+        source: TheCodeSelectionSource.fromBrowserAddressBar,
       );
     }
   }

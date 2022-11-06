@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'package:single_page_scrollable_website/common/common.dart';
+import 'package:single_page_scrollable_website/widgets/widgets.dart';
+
+import 'code_sections.dart';
 
 class HomeScreen extends StatelessWidget {
-  final List<MaterialColor> colors;
-
+  final List<Widget> pages;
   final ValueNotifier<TheCode?> theCodeNotifier;
-  // final List<Widget> sections;
 
   const HomeScreen({
     Key? key,
-    required this.colors,
-
-    // required this.sections,
+    required this.pages,
     required this.theCodeNotifier,
   }) : super(key: key);
 
@@ -21,32 +20,17 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black87,
       body: Column(
-        children: const [
-          // TopNavigationMenu2(
-          //   colors: colors,
-          //   theCodeNotifier: theCodeNotifier,
-          // ),
-          // Expanded(
-          //   child: CodeSectionsNew(
-          //     theCodeNotifier: theCodeNotifier,
-          //   ),
-          // ),
-          // Expanded(
-          //   child: CodeSections(
-          //     colors: colors,
-          //     theCodeNotifier: theCodeNotifier,
-          //   ),
-          // ),
-          // TopNavigationMenu(
-          //   colors: colors,
-          //   colorCodeNotifier: colorCodeNotifier,
-          // ),
-          // Expanded(
-          //   child: ColorSections(
-          //     colors: colors,
-          //     colorCodeNotifier: colorCodeNotifier,
-          //   ),
-          // ),
+        children: [
+          TopNavigationMenu2(
+            pages: pages,
+            theCodeNotifier: theCodeNotifier,
+          ),
+          Expanded(
+            child: CodeSections(
+              pages: pages,
+              theCodeNotifier: theCodeNotifier,
+            ),
+          ),
         ],
       ),
     );
