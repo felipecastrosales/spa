@@ -33,12 +33,17 @@ class TopNavigationMenu2 extends StatelessWidget {
             children: [
               NavigationMenuButton(
                 color: Colors.purple,
-                selected: colorCodeIndex == 10,
+                selected: colorCodeIndex == 0,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 8,
                   vertical: 16,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  theCodeNotifier.value = TheCode(
+                    theCode: colors[10].toHex(),
+                    source: TheCodeSelectionSource.fromButtonClick,
+                  );
+                },
               ),
               for (int index = 0; index < colors.length; index++)
                 NavigationMenuButton(
