@@ -20,9 +20,9 @@ class SinglePageAppRouteInformationParser
       SinglePageAppRouteInformationParser.parseRouteInformation:
       pathSegments: $pathSegments | length: ${pathSegments.length}
     ''');
-    if (uri.pathSegments.isEmpty) {
+    if (pathSegments.isEmpty) {
       return SinglePageAppConfiguration.home();
-    } else if (uri.pathSegments.length == 2) {
+    } else if (pathSegments.length == 2) {
       final first = pathSegments[0].toLowerCase();
       final second = pathSegments[1].toLowerCase();
       if (first == 'section' && isValidPage(second)) {
@@ -39,6 +39,7 @@ class SinglePageAppRouteInformationParser
   RouteInformation? restoreRouteInformation(
     SinglePageAppConfiguration configuration,
   ) {
+    debugPrint('configuration: ${configuration.pageCode}');
     if (configuration.isUnknown) {
       debugPrint('unknown page');
       return const RouteInformation(location: '/unknown');
@@ -46,7 +47,9 @@ class SinglePageAppRouteInformationParser
       return RouteInformation(
         location: configuration.pageCode == null
             ? '/'
-            : '/section/${configuration.pageCode}',
+            : configuration.pageCode == pages[0].toString().toLowerCase()
+                ? '/'
+                : '/section/${configuration.pageCode}',
       );
     } else {
       return null;
