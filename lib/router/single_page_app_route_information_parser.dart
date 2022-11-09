@@ -15,29 +15,22 @@ class SinglePageAppRouteInformationParser
     RouteInformation routeInformation,
   ) async {
     final uri = Uri.parse(routeInformation.location ?? '');
+    final pathSegments = uri.pathSegments;
     debugPrint('''
       SinglePageAppRouteInformationParser.parseRouteInformation:
-      uri.pathSegments: ${uri.pathSegments}',
-      uri.pathSegments.length: ${uri.pathSegments.length}
-      ''');
+      pathSegments: $pathSegments | length: ${pathSegments.length}
+    ''');
     if (uri.pathSegments.isEmpty) {
       return SinglePageAppConfiguration.home();
-      // analyze
-    } else if (uri.pathSegments.length == 1 &&
-        isValidPage(uri.pathSegments.first)) {
-      return SinglePageAppConfiguration.home();
     } else if (uri.pathSegments.length == 2) {
-      final first = uri.pathSegments[0].toLowerCase();
-      final second = uri.pathSegments[1].toLowerCase();
-      if (first == '/' && isValidPage(second)) {
-        debugPrint('sections ok and is valid page :)');
+      final first = pathSegments[0].toLowerCase();
+      final second = pathSegments[1].toLowerCase();
+      if (first == 'section' && isValidPage(second)) {
         return SinglePageAppConfiguration.home(pageCode: second);
       } else {
-        debugPrint('sections ok but is not valid page :(');
         return SinglePageAppConfiguration.unknown();
       }
     } else {
-      debugPrint('unknown 30');
       return SinglePageAppConfiguration.unknown();
     }
   }
@@ -51,8 +44,9 @@ class SinglePageAppRouteInformationParser
       return const RouteInformation(location: '/unknown');
     } else if (configuration.isHomePage) {
       return RouteInformation(
-        location:
-            configuration.pageCode == null ? '/' : '/${configuration.pageCode}',
+        location: configuration.pageCode == null
+            ? '/'
+            : '/section/${configuration.pageCode}',
       );
     } else {
       return null;
