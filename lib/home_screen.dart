@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
             pages: pages,
             theCodeNotifier: theCodeNotifier,
           ),
-          Expanded(
+          Flexible(
             child: CodeSections(
               pages: pages,
               theCodeNotifier: theCodeNotifier,

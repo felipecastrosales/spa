@@ -47,9 +47,7 @@ class SinglePageAppRouteInformationParser
       return RouteInformation(
         location: configuration.pageCode == null
             ? '/'
-            : configuration.pageCode == pages[0].toString().toLowerCase()
-                ? '/'
-                : '/section/${configuration.pageCode}',
+            : '/section/${configuration.pageCode}',
       );
     } else {
       return null;
