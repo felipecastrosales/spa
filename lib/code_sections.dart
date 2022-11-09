@@ -57,6 +57,7 @@ class _CodeSectionsState extends State<CodeSections> {
             return true;
           },
           child: PageView.builder(
+            // child: ExpandablePageView.builder(
             pageSnapping: false,
             scrollDirection: Axis.vertical,
             controller: _pageController,

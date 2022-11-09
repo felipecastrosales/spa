@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:single_page_scrollable_website/common/common.dart';
-import 'package:single_page_scrollable_website/widgets/widgets.dart';
 
 import 'code_sections.dart';
+import 'widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<Widget> pages;

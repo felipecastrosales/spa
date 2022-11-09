@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   equatable: ^2.0.3
+  expandable_page_view: ^1.0.17
   flutter:
     sdk: flutter
   flutter_lorem: ^2.0.0
