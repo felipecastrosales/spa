@@ -5,7 +5,7 @@ import 'router/single_page_app_route_information_parser.dart';
 import 'router/single_page_app_router_delegate.dart';
 
 class App extends StatefulWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   State<App> createState() => _AppState();

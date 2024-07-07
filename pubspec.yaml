@@ -1,23 +1,23 @@
 name: single_page_scrollable_website
-description: A new Flutter project.
+description: Single Page Scrollable Website
 
-version: 1.0.0+1
+version: 1.0.1+1
 publish_to: none
 
 environment:
-  sdk: '>=2.18.0 <3.0.0'
+  sdk: '>=3.4.0 <4.0.0'
 
 dependencies:
-  equatable: ^2.0.3
+  equatable: ^2.0.5
   expandable_page_view: ^1.0.17
   flutter:
     sdk: flutter
   flutter_lorem: ^2.0.0
   flutter_web_plugins:
     sdk: flutter
-  scrollable_positioned_list: ^0.2.2
-  shared_preferences: ^2.0.15
-  tuple: ^2.0.0
+  scrollable_positioned_list: ^0.3.8
+  shared_preferences: ^2.2.3
+  tuple: ^2.0.2
   url_strategy: ^0.2.0
 dev_dependencies:
-  flutter_lints: ^2.0.1
+  flutter_lints: ^4.0.0

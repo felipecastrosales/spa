@@ -6,10 +6,10 @@ class CodeSections extends StatefulWidget {
   final ValueNotifier<TheCode?> theCodeNotifier;
 
   const CodeSections({
-    Key? key,
+    super.key,
     required this.pages,
     required this.theCodeNotifier,
-  }) : super(key: key);
+  });
 
   @override
   State<CodeSections> createState() => _CodeSectionsState();
@@ -48,6 +48,7 @@ class _CodeSectionsState extends State<CodeSections> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         final availableHeight = constraints.maxHeight;
+        debugPrint('availableHeight: $availableHeight');
         _updatePageController(availableHeight);
         return NotificationListener<ScrollNotification>(
           onNotification: (notification) {
@@ -57,7 +58,6 @@ class _CodeSectionsState extends State<CodeSections> {
             return true;
           },
           child: PageView.builder(
-            // child: ExpandablePageView.builder(
             pageSnapping: false,
             scrollDirection: Axis.vertical,
             controller: _pageController,

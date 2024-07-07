@@ -6,14 +6,14 @@ import 'code_sections.dart';
 import 'widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
-  final List<Widget> pages;
-  final ValueNotifier<TheCode?> theCodeNotifier;
-
   const HomeScreen({
-    Key? key,
+    super.key,
     required this.pages,
     required this.theCodeNotifier,
-  }) : super(key: key);
+  });
+
+  final List<Widget> pages;
+  final ValueNotifier<TheCode?> theCodeNotifier;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
             pages: pages,
             theCodeNotifier: theCodeNotifier,
           ),
-          Flexible(
+          Expanded(
             child: CodeSections(
               pages: pages,
               theCodeNotifier: theCodeNotifier,

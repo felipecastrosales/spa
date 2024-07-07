@@ -7,16 +7,16 @@ class NavigationMenuButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   const NavigationMenuButton({
-    Key? key,
+    super.key,
     required this.title,
     required this.selected,
     required this.onPressed,
     this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme.headline6;
+    final textTheme = Theme.of(context).textTheme.titleLarge;
     return Padding(
       padding: padding,
       child: selected
