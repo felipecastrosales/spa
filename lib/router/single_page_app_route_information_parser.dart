@@ -14,7 +14,7 @@ class SinglePageAppRouteInformationParser
   Future<SinglePageAppConfiguration> parseRouteInformation(
     RouteInformation routeInformation,
   ) async {
-    final uri = Uri.parse(routeInformation.location ?? '');
+    final uri = routeInformation.uri;
     final pathSegments = uri.pathSegments;
     debugPrint('''
       SinglePageAppRouteInformationParser.parseRouteInformation:
@@ -42,12 +42,12 @@ class SinglePageAppRouteInformationParser
     debugPrint('configuration: ${configuration.pageCode}');
     if (configuration.isUnknown) {
       debugPrint('unknown page');
-      return const RouteInformation(location: '/unknown');
+      return RouteInformation(uri: Uri.parse('/unknown'));
     } else if (configuration.isHomePage) {
       return RouteInformation(
-        location: configuration.pageCode == null
+        uri: Uri.parse(configuration.pageCode == null
             ? '/'
-            : '/section/${configuration.pageCode}',
+            : '/section/${configuration.pageCode}'),
       );
     } else {
       return null;

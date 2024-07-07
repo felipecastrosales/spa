@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'widgets.dart';
 
 class TopNavigationMenu extends StatelessWidget {
-  final List<Widget> pages;
-  final ValueNotifier<TheCode?> theCodeNotifier;
-
   const TopNavigationMenu({
-    Key? key,
+    super.key,
     required this.pages,
     required this.theCodeNotifier,
-  }) : super(key: key);
+  });
+
+  final List<Widget> pages;
+  final ValueNotifier<TheCode?> theCodeNotifier;
 
   int get pageCodeIndex {
     final selectedTheCode = theCodeNotifier.value?.theCode;
@@ -26,7 +26,7 @@ class TopNavigationMenu extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: theCodeNotifier,
       builder: (context, value, child) {
-        return Container(
+        return ColoredBox(
           color: Colors.black87,
           child: Wrap(
             direction: Axis.horizontal,

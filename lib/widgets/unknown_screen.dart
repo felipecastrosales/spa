@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:single_page_scrollable_website/app.dart';
 
 class UnknownScreen extends StatelessWidget {
-  const UnknownScreen({Key? key}) : super(key: key);
+  const UnknownScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class UnknownScreen extends StatelessWidget {
             child: Center(
               child: Text(
                 'ERROR: 404\n\n\nPAGE NOT FOUND!',
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -35,7 +35,7 @@ class UnknownScreen extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 'Voltar para HOME',
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
                 textAlign: TextAlign.center,
               ),
             ),
